@@ -9,7 +9,7 @@ public class Cavalier extends Piece {
     }
 
     @Override
-    public int getMaxPiece() {
+    public int getValue() {
         return 0;
     }
 

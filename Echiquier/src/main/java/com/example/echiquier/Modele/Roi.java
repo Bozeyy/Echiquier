@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Roi extends Piece{
 
+    public boolean isEchec = false;
+
     public Roi(int x, int y, boolean blanc) {
         super(x, y, blanc);
     }
 
-    public int getMaxPiece(){
+    public int getValue(){
         return 1;
     }
 
@@ -37,7 +39,11 @@ public class Roi extends Piece{
 
     @Override
     public String getPathImage() {
-        return null;
+        if (this.blanc) {
+            return "src/main/resources/RoiBlanc.png";
+        } else {
+            return "src/main/resources/RoiNoir.png";
+        }
     }
 
 

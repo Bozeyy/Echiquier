@@ -8,87 +8,56 @@ public class Pion extends Piece {
         super(x, y, blanc);
     }
 
-    public int getMaxPiece() {
+    public int getValue() {
         return 8;
     }
 
     @Override
     public ArrayList<int[]> coupPossible(Echiquier echiquier) {
-        ArrayList<int[]> coupPossible = new ArrayList<int[]>();
+        ArrayList<int[]> coupPossible = new ArrayList<>();
 
         int x = this.x;
         int y = this.y;
+
         if (this.blanc) {
-            x = this.x - 1;
-            if (x >= 0) {
-                if (echiquier.plateau[x][y] == null) {
-                    coupPossible.add(new int[]{x, y});
-                }
+            System.out.println("Pion blanc");
+            // Check one step forward
+            if (echiquier.plateau[x][y+1] == null && y+1 <= 7) {
+                coupPossible.add(new int[]{x, y+1});
             }
-            x = this.x - 1;
-            y = this.y - 1;
-            if (x >= 0 && y >= 0) {
-                if (echiquier.plateau[x][y] != null) {
-                    if (echiquier.plateau[x][y].blanc != this.blanc) {
-                        coupPossible.add(new int[]{x, y});
-                    }
-                }
+            if (y == 1 && echiquier.plateau[x][y+2] == null) {
+                coupPossible.add(new int[]{x, y+2});
             }
-            x = this.x - 1;
-            y = this.y + 1;
-            if (x >= 0 && y <= 7) {
-                if (echiquier.plateau[x][y] != null) {
-                    if (echiquier.plateau[x][y].blanc != this.blanc) {
-                        coupPossible.add(new int[]{x, y});
-                    }
-                }
+
+            // check diagonal captures
+            if (x + 1 <= 7 && y + 1 <= 7 && echiquier.plateau[x + 1][y + 1] != null && !echiquier.plateau[x + 1][y + 1].blanc) {
+                coupPossible.add(new int[]{x + 1, y + 1});
             }
-            if (this.x == 6) {
-                x = this.x - 2;
-                if (x >= 0) {
-                    if (echiquier.plateau[x][y] == null) {
-                        coupPossible.add(new int[]{x, y});
-                    }
-                }
+            if (x - 1 >= 0 && y + 1 <= 7 && echiquier.plateau[x - 1][y + 1] != null && !echiquier.plateau[x - 1][y + 1].blanc) {
+                coupPossible.add(new int[]{x - 1, y + 1});
             }
 
         } else {
-            x = this.x + 1;
-            if (x <= 7) {
-                if (echiquier.plateau[x][y] == null) {
-                    coupPossible.add(new int[]{x, y});
-                }
+            System.out.println("Pion noir");
+            // Check one step forward
+            if (echiquier.plateau[x][y-1] == null && y-1 >= 0) {
+                coupPossible.add(new int[]{x, y-1});
             }
-            x = this.x + 1;
-            y = this.y - 1;
-            if (x <= 7 && y >= 0) {
-                if (echiquier.plateau[x][y] != null) {
-                    if (echiquier.plateau[x][y].blanc != this.blanc) {
-                        coupPossible.add(new int[]{x, y});
-                    }
-                }
+            if (y == 6 && echiquier.plateau[x][y-2] == null) {
+                coupPossible.add(new int[]{x, y-2});
             }
-            x = this.x + 1;
-            y = this.y + 1;
-            if (x <= 7 && y <= 7) {
-                if (echiquier.plateau[x][y] != null) {
-                    if (echiquier.plateau[x][y].blanc != this.blanc) {
-                        coupPossible.add(new int[]{x, y});
-                    }
-                }
+
+            // check diagonal captures
+            if (x + 1 <= 7 && y - 1 >= 0 && echiquier.plateau[x + 1][y - 1] != null && echiquier.plateau[x + 1][y - 1].blanc) {
+                coupPossible.add(new int[]{x + 1, y - 1});
             }
-            if (this.x == 1) {
-                x = this.x + 2;
-                if (x <= 7) {
-                    if (echiquier.plateau[x][y] == null) {
-                        coupPossible.add(new int[]{x, y});
-                    }
-                }
+            if (x - 1 >= 0 && y - 1 >= 0 && echiquier.plateau[x - 1][y - 1] != null && echiquier.plateau[x - 1][y - 1].blanc) {
+                coupPossible.add(new int[]{x - 1, y - 1});
             }
         }
-
         return coupPossible;
     }
+
 
     @Override
     public String getPathImage() {

@@ -8,7 +8,7 @@ public class Fou extends Piece {
         super(x, y, blanc);
     }
 
-    public int getMaxPiece() {
+    public int getValue() {
         return 2;
     }
 
@@ -80,6 +80,10 @@ public class Fou extends Piece {
 
     @Override
     public String getPathImage() {
-        return null;
+        if (this.blanc) {
+            return "src/main/resources/FouBlanc.png";
+        } else {
+            return "src/main/resources/FouNoir.png";
+        }
     }
 }

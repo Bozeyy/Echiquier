@@ -8,7 +8,7 @@ public class Reine extends Piece {
         super(x, y, blanc);
     }
 
-    public int getMaxPiece() {
+    public int getValue() {
         return 1;
     }
 
@@ -137,6 +137,10 @@ public class Reine extends Piece {
 
     @Override
     public String getPathImage() {
-        return null;
+        if (this.blanc) {
+            return "src/main/resources/ReineBlanc.png";
+        } else {
+            return "src/main/resources/ReineNoir.png";
+        }
     }
 }

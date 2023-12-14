@@ -13,7 +13,7 @@ public abstract class Piece {
         this.blanc = blanc;
     }
 
-    public abstract int getMaxPiece();
+    public abstract int getValue();
 
     public abstract ArrayList<int[]> coupPossible(Echiquier echiquier);
 

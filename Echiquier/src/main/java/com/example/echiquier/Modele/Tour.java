@@ -8,7 +8,7 @@ public class Tour extends Piece{
         super(x, y, blanc);
     }
 
-    public int getMaxPiece(){
+    public int getValue(){
         return 2;
     }
 
@@ -75,6 +75,10 @@ public class Tour extends Piece{
 
     @Override
     public String getPathImage() {
-        return null;
+        if (this.blanc) {
+            return "src/main/resources/TourBlanc.png";
+        } else {
+            return "src/main/resources/TourNoir.png";
+        }
     }
 }
